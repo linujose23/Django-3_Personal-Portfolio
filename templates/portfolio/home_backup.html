@@ -1,0 +1,35 @@
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+
+<h1>Linu's Portfolio!</h1>
+{% load static %}
+<br>
+<!-- blog is app name so it checks for blog app name and thus goes to blog and then checks for url named with blogs so -->
+<!-- blog(app_name): blogs named url in it -->
+<h4>
+    <a href=" {% url 'blog:blogs' %}">My-Blogs!</a>
+</h4>
+<h4>
+    <a href="{% static 'portfolio/updated_resume.docx' %}">Resume</a>
+</h4>
+<br>
+<img src="{% static 'portfolio/myself.jpg' %}" alt="" height="460" width="460">
+<div class="align-center">
+    <h4>
+        {% for projects in all_apps %}
+
+        {{projects.title}}
+        <br>
+        {{projects.desc}}
+        <br>
+        <img src="{{ projects.image.url }}" height="100" width="150">
+        <br>
+        {% if projects.url %}
+        <a href="{{ projects.url }}">LINK</a>
+        {% endif %}
+        {% endfor %}
+    </h4>
+</div>
+
+{% endblock %}
